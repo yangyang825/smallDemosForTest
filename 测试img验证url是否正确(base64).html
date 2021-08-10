@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <base href="/binding/"> -->
+</head>
+<body>
+  <img src="" alt="">
+
+  <script>
+    const DEFAULT_LOGO = 'logo.svg';
+
+
+    //验证返回的url是否有效
+    const checkImgExists = function(url) {
+      return new Promise(function(resolve, reject) {
+        const ImgObj = new Image();
+        ImgObj.src = url;
+        ImgObj.onload = function(res) {
+          console.log(res);
+          resolve({imgExist: true, res: res});
+        };
+        ImgObj.onerror = function(err) {
+          console.log(err);
+          reject(err);
+        };
+      });
+    };
+
+    const logo = async() => {
+      let url  = DEFAULT_LOGO;
+      try {
+        console.log(123456789);
+        const {imgExist} = await checkImgExists(base64URL);
+        if(imgExist) url = base64URL;
+        console.log('此时的url:', url);
+      } catch (error) {
+        throw(error);
+      }
+      return url;
+    };
+
+    
+    const img = document.querySelector('img');
+    console.log(logo);
+    const base64URL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAeCAYAAACmPacqAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAATcSURBVFiFrZdbaBxVGMd/Zy57S3Y3K81lc2kbaltsTW0tWLGQhxaRoBSCIgWFPiiKD4I+CyL40EcL+iB90YpQRKS+qHkrCK0tLW2labUtNJsmTbLZmOwlu5vd2Znjw+xMZpPdZHP5XoZzdnbmN//v+3/nHLHnXFJSjbaQyZf93/LqwV9QxQSm7EMVE4yMfsI3qY94MKuwkVB0dd17hE8HQJYNNPePZo50IcyF5Nt0Bbro3nEJgMfiAy4kT/JgrnkQRVexDLMpCO9YeJVxYlekzFD3QwBuznVyKxnAUsNNgzQL4M7r9ofWhQFbKaBpiLVA6kE4AN7QVs1UY7sgZNlYE0Joy+OGMFsNRw33ugYEqtgemHqqeNPSEKIKACBUgV9Y269MwyKto0RAk5SkgqIJDNStwazpHI8iXhDhU/ALi5JUMFQFxb1fbBzG6SHrpaceiKOIoao1EO6zNwrTDEg926IKAppE0Ty14gGBLRRwRC8DkDV8De/xFqtQBSUpUFZAKPoWrT3UM8Vg/D5jC+1cSh5irrwM5HZTT3rsQrUdY6AiDblKlU3BdMYUBuP3OdnxNZl4P/2xN7g4cYK7C34ApGEhdAVZsWygqiJ+YWGoahV4NcimYNr0Ct3RJNHAXaLcpafvNk/kTqbze2sUAmp6iRMOiDc90v6OjRWwoqskFyVXEs+TWRqovm+C05HvibfUWeLMusveasDSJmAswyRr+Lg8f4CxyXcw/+vBlH0klIMUy/aWocZJVQcBborqhfTbQGLPuaQ83Cvo0WYYnY8xnm3sDicUXaUvWGSo+yH9sRR/Th9gJLVr+Ut1ZZWTABRNNHQSgDh6fkqe3vkPZ/aGuTojuDgW5OZc+7owYNs7qplkKio50dIQBuz1x+kx9eqmS11CSxdUri0OsHdmfF1FHBCn8WUNH9nqDkGsENR104qwKhK1CmMZFoqucMRYYDg8brvpzqQkPd9GmhbShfX3rc2GrFiIallKwHLmq31GGpJWbYnhZ8Z57d/jy9ZOFCLbB1HtNTVhSiR2uqyKRAF00+SoUuDFya/w9Rjbtzat3NG58xWrdly1u1Wxr6KYtOd7NTTFzBEJhzacnnpQsmwsHz086rj1UwVxu48GTytd3Or9lEntGOK7Sz/K2+KQ/eNkjiu+/lVgu0NZpBZAVJZ4YsTcY4gXxnEWUOOuZnZ6AU3S0WYhpq+9Ln1WgsVijlzoZW7MnGIkf9i19+5QlnfbrzOw6wYAl2dP8cfUPrcfKbpKRC9zvGOO4cCHhDte4ocn79X0HRekwYbLgdPaoylYNIiWFhCZnznQcZWB4JucffwZdyYlUgvQm7jO/tmfCO4rsmf/TfpjH3P270FXwahmMhi/zyvpNh6l2kku1i/FlamrgTIl6udnur+gNQ60gj+FVPJ0Bhf4Kz3Eo3QrmZKK1LtpKUF+Ok9H5g6aGODXzBGWDAVpSXKWj4V8iKtTx/jdOsztYp9d0KYFpoXwLgWWBEu6XdkZY0mEdaVXmtEwwjknLaYpPS0zFnyf88VT3JsNkihE2B3KcrA8y5GesZo0OmlKF9RNnSa96RPG6HNSFO3CM+djGPkQMnUPZUeRQvwFbuRPMJJ/i98SnYBdQ/7WVp4NpegLpNwH7ihOMxeMM7HUzuh8jIlicMNg/wN8/fC0rrEBQAAAAABJRU5ErkJggg==';
+    
+    //logo是个Promise对象
+    logo().then( url => {
+      img.src = url;
+    })
+
+
+  </script>
+</body>
+</html>
