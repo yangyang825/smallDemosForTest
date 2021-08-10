@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <p>这是一个pppppp标签</p>
+    nodes: {{nodes}}
+    <div></div>
+    <keep-alive>
+        <my-components v-for="item in rawData" :key="item.id" :ref="my-components">这里是按v-for渲染出的子组件: {{ item }}
+            <div>
+                <ul>
+                    <li>li 1号</li>
+                    <li>li 2号</li>
+                </ul>
+            </div>
+        </my-components>
+        <my-components>
+            <li>li 3号</li>
+        </my-components>
+    </keep-alive>
+</div>
+</body>
+
+<template id="my-components">
+    
+</template>
+<script src="vue.js"></script>
+<script>
+    var child = {
+        template: '#my-components',
+        props: {
+            rawData: {
+                type: Array,
+                default: '数组',
+                required: true,
+            }
+        },
+        data: function() {
+            return {
+                childMsg: 'child'
+            }
+        },
+        beforeCreate() {
+            console.log("子组件beforeCreat发生:", this.$parent.nodes);
+            this.$parent.nodes.push(this);
+            //console.log(this.nodes);
+            debugger;
+            console.log("子组件beforeCreat发生, push后:", this.$parent.nodes);
+        },
+        created: function () {
+            debugger;
+            console.log(this.nodes);
+            console.log("子组件created发生:", this.$parent.nodes);
+        },
+        beforeMount: function () {
+            debugger;
+        },
+        mounted: function () {
+            debugger;
+        },
+        deactivated: function(){
+            alert("keepAlive停用");
+        },
+        activated: function () {
+            console.log('component activated');
+        },
+        beforeDestroy: function () {
+            console.group('beforeDestroy 销毁前状态===============》');
+            var state = {
+                'el': this.$el,
+                'data': this.$data,
+                'message': this.message
+            }
+            console.log(this.$el);
+            console.log(state);
+        },
+        destroyed: function () {
+            console.group('destroyed 销毁完成状态===============》');
+            var state = {
+                'el': this.$el,
+                'data': this.$data,
+                'message': this.message
+            }
+            console.log(this.$el);
+            console.log(state);
+        },
+    };
+    var vm = new Vue({
+        el: '#app',
+        data: {
+                message: 'father',
+                msg1: "hello",
+                show: true,
+                nodes: [
+                    {"佩奇": 4},
+                    {"乔治": 3}]
+                },
+        beforeCreate: function () {
+            debugger;
+        },
+        created: function () {
+            debugger;
+        },
+        beforeMount: function () {
+            debugger;
+        },
+        mounted: function () {
+            debugger;
+        },
+        beforeUpdate: function () {
+            alert("页面视图更新前");
+
+        },
+        updated: function () {
+            alert("页面视图更新后");
+        },
+        beforeDestroy: function () {
+            console.group('beforeDestroy 销毁前状态===============》');
+            var state = {
+                'el': this.$el,
+                'data': this.$data,
+                'message': this.message
+            }
+            console.log(this.$el);
+            console.log(state);
+        },
+        destroyed: function () {
+            console.group('destroyed 销毁完成状态===============》');
+            var state = {
+                'el': this.$el,
+                'data': this.$data,
+                'message': this.message
+            }
+            console.log(this.$el);
+            console.log(state);
+        },
+        components: {
+            'my-components': child
+        }
+    });
+</script>
+</html>

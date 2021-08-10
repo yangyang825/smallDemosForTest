@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="scroll-test">
+    测试滚动条
+    <ul>
+      <li>测试滚动条dadadasdasdasdadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+      <li>测试滚动条dadadasdasdasdadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+      <li>测试滚动条dadadasdasdasdadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+      <li>测试滚动条dadadasdasdasdadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+      <li>测试滚动条dadadasdasdasdadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+      <li>测试滚动条dadadasdasdasdadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+      <li>测试滚动条dadadasdasdasdadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+      <li>测试滚动条dadadasdasdasdadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+      <li>测试滚动条dadadasdasdasdadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+      <li>测试滚动条dadadasdasdasdadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+      <li>测试滚动条dadadasdasdasdadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+      <li>测试滚动条dadadasdasdasdadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+      <li>测试滚动条dadadasdasdasdadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+      <li>测试滚动条</li>
+    </ul>
+  </div>
+</body>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  .scroll-test {
+    width: 300px;
+    height: 400px;
+    background-color: skyblue;
+    margin: 100px auto;
+    overflow-y: scroll;
+    overflow-x: scroll;
+  }
+  /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+::-webkit-scrollbar  
+{  
+    width: 16px;  
+    height: 16px;  
+    /* x轴滚动条高度 */
+    background-color: #f2f2f2;  
+    /* border-left: 20px solid red;
+    border-right: 20px solid green; */
+}  
+  
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{  
+    /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);   */
+    border-radius: 10px;  
+    background-color: #f2f2f2;
+    width: 50px !important; 
+    /* 直接设置宽度//无效 */
+}  
+  
+/*定义滑块 内阴影+圆角*/  
+::-webkit-scrollbar-thumb  
+{  
+    background-color: #818B99;
+    border-radius: 9px;
+    border: 5px solid transparent;
+    background-clip: content-box;
+    /* 设置完这一句就能控制thumb比track小了,实现滚动槽的效果 */
+}
+</style>
+</html>
