@@ -1,6 +1,7 @@
 ## 事故描述:
 
-对于一个attribute设置了autocomplete='off'的input密码框, chrome依然会提示保存的密码.
+1.在控制台把input的password改为text, 被隐藏的密码会显示出来,不安全
+2. 对于一个attribute设置了autocomplete='off'的input密码框, chrome依然会提示保存的密码.
 
 ![image-20210719100639524](C:\Users\yangyang08\AppData\Roaming\Typora\typora-user-images\image-20210719100639524.png)
 
@@ -31,6 +32,7 @@ But if you want Chrome (and other browsers) to stop autofilling fields then you 
 > \3. 更新了子组件common-input, 为biz-skylar-validate-input的原有功能
 >
 > \4. 暴露出autocomplete方法
+> \5. 暴露小眼睛
 
 
 
