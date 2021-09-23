@@ -17,7 +17,7 @@
 
 # 其他相关(CSS/HTML/少部分js)
 ## 1. 测试img验证url是否正确(base64)
-结论: 通过new一个Image()对象,利用onload和onerror判断url是否正确; 注意new Image()的过程是异步,需要写成promise,否则判断会被跳过;
+结论: 通过new一个Image()对象,利用onload和onerror判断url是否正确; 注意new Image().xxx的过程是异步,需要写成promise,否则判断会被跳过;
 
 ## 2. 测试scrollbar的样式修改
 结论: scrollbar作为html标签自带的滚动条,本身是伪类,修改时直接改伪类样式即可; 注意滚动thumb设置宽度无效, 需要用background-clip属性配合border: transparent, 才能画出滚动槽的感觉;
