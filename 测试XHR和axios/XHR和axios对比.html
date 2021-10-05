@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <base href="/binding/"> -->
+  
+  <script src="https://unpkg.com/axios/dist/axios.min.js "></script>
+</head>
+<body>
+  <img src="" alt="">
+
+  <script>
+    const DEFAULT_LOGO = 'logo.svg';
+    
+    var baseURL = 'https://autumnfish.cn';
+    // var baseURL = 'https://google.com'
+    let xhr = new XMLHttpRequest();
+    
+    xhr.onreadystatechange = function() {
+      if(xhr.readyState == 4) {
+        if(xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+          console.log('状态码200+时候的xhr:', xhr);
+        }else {
+          console.log('状态码不成功时候的xhr:', xhr);
+        }
+      }
+    }
+    xhr.open("get", `${baseURL}/search?keywords=`+'周杰伦', true);
+    xhr.send(null);
+    console.log('成功接收时候的xhr',xhr);
+
+    axios.get(`${baseURL}/search?keywords=`+'周杰伦')
+      .then(function(response) {
+        console.log('成功接收时候的axios',response);
+      }, function(err) {
+        console.log('errrrr', err);
+      });
+
+    //直接给baseURL发请求会报错?
+    xhr.open("get", baseURL, true);
+    xhr.send(null);
+    console.log('baseURL发送完的xhr', xhr);
+    axios.get(baseURL)
+    .then(function(response) {
+        console.log('baseURL发送完的axios',response);
+      }, function(err) {
+        console.log('errrrr', err);
+      });
+    </script>
+</body>
+</html>
