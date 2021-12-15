@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function add(...args) {
+      console.log('args, ...args', args, ...args)
+
+
+      let getSum = function(args) {
+        let result = args.reduce((previous, current) => {
+          return previous + current
+        }, 0)
+        debugger
+        return result;
+      }
+      let fn = function(...res) {
+        debugger
+        return add(...args, ...res)
+      };
+      fn.sumof = function() {
+        console.log(getSum(args));
+      }
+      return fn;
+    }
+
+    // add(1, 2).sumof()
+    add(1)(2).sumof()
+  </script>
+</body>
+
+</html>

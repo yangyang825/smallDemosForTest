@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function deepCopy(obj) {
+      let result;
+      if (!obj) {
+        return null;
+      }
+      if (typeof obj == 'object') {
+        result = obj.__proto__.constructor == Array ? [] : {};
+        for (let item in obj) { //arr index obj key
+          result[item] = typeof obj[item] == 'object' ? deepCopy(obj[item]) : obj[item];
+        }
+      } else {
+        result = obj;
+      }
+      return result;
+    }
+    let obj = {
+      1: [1],
+      a: 'fff',
+      3: {
+        1: 2
+      }
+    }
+    console.log(deepCopy(obj))
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <!--  -->
+  <count-down id='app' :count='500' @finish='alert("its time!")'>
+    当前剩余 {{min}} 分 {{seconds}} 秒
+  </count-down>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+
+        startTime: 0,
+        //startMin: 0,
+        //startSecond: 0,
+        min: 0,
+        seconds: 0,
+        endSed: 0,
+      },
+      mounted() {
+        startTime = new Date();
+        this.changeTimeFoo()
+        setTimeInterval(() => {
+          this.changeTimeFoo()
+        }, 1000)
+      },
+      computed: {
+        startMin() {
+          return this.startTime.getMinutes()
+        },
+        startSecond() {
+          return this.startTime.getSeconds();
+        },
+
+      },
+      methods: {
+        init() {
+          this.endSed = this.startSecond + 500;
+        },
+        changeTimeFoo() {
+          const now = new Date();
+          let leftTime = endSed - now.getTime();
+          this.min = Math.floor(leftTime / (1000 * 60) % 60);
+          this.seconds = Math.floor(leftTime / 1000 % 60);
+        }
+      },
+    });
+  </script>
+
+  <style lang='scss' scoped>
+
+  </style>
+
+</body>
+
+</html>

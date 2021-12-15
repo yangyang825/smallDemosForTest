@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function* g() {
+      let s1 = yield 'a';
+      yield 'b';
+      yield 'c';
+      return 'ending';
+    }
+
+    let gen = g(); // 返回一个对象
+
+    gen.next();
+
+    async() => {
+      let data = await foo();
+      console.log(data);
+      return m;
+    }
+    return new Promise((resolve, reject) => {
+      resolve(m)
+
+    })
+
+
+    function await (x) {
+      if (x instanceof Promise) {
+        return x.then(item => {
+          return item
+        })
+      } else {
+        return new Promise((resolve, reject) => {
+          resolve(x)
+        }).then(x => {
+          return x
+        })
+      }
+    }
+    await.then()
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //要求：需求两个请求的数据才能进行后续处理
+    //用Promise.all方法对其进行包装； all方法传进去一个可遍历参数，比如数组；数组内元素可以是promise对象
+    Promise.all([
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('返回了请求1')
+        }, 2000)
+      }),
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('返回了请求2')
+        }, 1000)
+      }),
+    ]).then(result => {
+      console.log(result);
+    })
+
+
+    function handleResult() {
+      console.log('hhh');
+    }
+  </script>
+</body>
+
+</html>

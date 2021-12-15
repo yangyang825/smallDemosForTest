@@ -124,7 +124,9 @@
 
 ![image-20210628110254324](C:\Users\yangyang08\AppData\Roaming\Typora\typora-user-images\image-20210628110254324.png)
 
-原因:父子组件的create都在父子组件的mounted之前, 子组件渲染时, 最后的节点最先渲染,被push进steps[], v-for的节点后续获取,
+原因:原来分析:父子组件的create都在父子组件的mounted之前, 子组件渲染时, 最后的节点最先渲染,被push进steps[], v-for的节点后续获取;
+
+后来发现这个原因不对,push顺序还是安装v-for先,div后,因为它们都写在templete内;真正原因是因为便利的数据是异步的,而div的数据是同步的;
 
 > https://codepen.io/weimengxi/pen/xxdwyZL
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <script>
+    function callback(data) {
+      console.log(data)
+    }
+  </script>
+  <script src="url?callback"></script>
+
+  <script>
+    function getJSONP(url) {
+      // let s = url+'callback';
+      let s = `${url}?callback`
+      let callback = function(data) {
+        //document.write(data);
+        this.data = data;
+      }
+      callback.doSomething = function() {
+
+      }
+      let body = document.querySelector('body')
+      body.appendChild(`&ltscript src=${s}
+      &lt/script&gt`)
+      return callback;
+    }
+
+    getJSONP('a.com');
+
+    function acd() {
+      window.data;
+    }
+  </script>
+</body>
+
+</html>

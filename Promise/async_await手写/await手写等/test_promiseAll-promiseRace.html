@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 原型链上加属性最好先判断存在与否 */
+    let m = Promise.prototype.hasOwnProperty('all')
+    console.log(m); //false
+
+    Promise.hasOwnProperty('all'); //true
+
+    Promise.prototype.myAll = function(funcsItr) {
+      //所有func都resolve,这个promise才resolve
+      let resolvedFuncs = [];
+      let itrLength = 0;
+      let resolvedCount = 0;
+      let p = new Promise((resolve, reject) => {
+        for (const item of funcsItr) {
+          itrLength++;
+          Promise.resolve(item).then(res => {
+            resolvedFuncs[resolvedCount] = res;
+            resolvedCount++;
+            if (resolvedCount === itrLength) {
+              resolve(resolvedFuncs)
+            }
+          })
+        }
+      })
+      return p;
+    }
+    let func1 = function() {
+      setTimeout(() => {
+        console.log(1);
+      }, 10000);
+    }
+    let func2 = function() {
+      console.log(2)
+    }
+    let arr = [func1, func2];
+    new Promise.prototype.myAll(arr).then(function(data) {
+      console.log(data)
+    })
+
+    Promise.myAll2 = function(itrt) {
+      let resolvedData = [];
+      let itrtLength = 0;
+      let p = new Promise((resolve, reject) => {
+        for (item of itrt) {
+          itrtLength++;
+          item.then(data => {
+            resolvedData.push(data); //只适用于itrt内只有promise的情况,如果有普通函数,没有then方法,须得用promise.resolve()
+          }, reason => {
+            reject(error);
+          })
+        }
+        if (resolvedData.length === itrLength) {
+          resolve(resolvedData);
+        }
+      })
+    }
+
+
+    Promise.myRace = function(itrt) {
+      return new Promise((resolve, reject) => {
+        for (const item of itrt) {
+          Promise.resolve(item)
+            .then(data => {
+              resolve(data)
+            })
+            .catch(reason => {
+              reject(reason)
+            })
+        }
+      })
+
+    }
+  </script>
+</body>
+
+</html>

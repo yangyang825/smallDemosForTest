@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="debounce">节流</button>
+  <button id="throttle">防抖</button>
+  <script>
+    let btn1 = document.getElementById('debounce');
+    let btn2 = document.getElementById('throttle');
+
+    function doSomeThing(aaa) {
+      // debugger
+      console.log('触发了');
+      console.log('此时this指向:', this);
+      console.log(aaa);
+    }
+
+    function debounce(doSomeThing, delay) {
+      let timer;
+      debugger
+      clearTimeout(timer);
+      return function() {
+        timer = setTimeout(() => {
+          doSomeThing.apply(this, arguments) //利用箭头函数,每次执行
+        }, delay)
+      }
+    }
+    // btn1.onclick = debounce(doSomeThing, 1000);//请用addEvent比较好
+    btn1.addEventListener('click', debounce(doSomeThing, 1000))
+
+    function throttle(doSomeThing, delay) {
+      let canRun = true;
+      return function() {
+        if (!canRun) return;
+        canRun = false;
+        setTimeout(() => {
+          doSomeThing.apply(this, arguments)
+          canRun = true;
+        }, delay)
+      }
+    }
+    btn2.addEventListener('click', throttle(doSomeThing, 1000))
+  </script>
+</body>
+
+</html>
